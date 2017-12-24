@@ -1,0 +1,14 @@
+---
+ - hosts: App-Group
+   tasks:
+   - name: Instalation of Httpd on AppGroup
+     yum: name=httpd state=latest
+   - name: Deploy the project to the webserver
+     copy: src=/home/anand/index.html dest=/var/www/html
+     notify:
+     - restart apache
+   - name: Start the service
+     service: name=httpd state=restarted
+   handlers:
+     - name: restart apache
+       service: name=httpd state=restarted
