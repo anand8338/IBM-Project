@@ -1,5 +1,6 @@
 ---
  - hosts: App-Group
+   become: True
    tasks:
    - name: Instalation of Httpd on AppGroup
      yum: name=httpd state=latest
